@@ -4,148 +4,142 @@
 
 De elaborat Laboratorul nr. 2
 
-## Conditii
+## Condiții
 
 ### Pasul 1. Pregătirea mediului
 
-1. Accesam linkul si instalam WordPress pentru SO corespunzator: https://wordpress.org/download/
-2. Instalam fisierul zip si cu ajutorul la WinRAR dezarhivam arhiva in folderul htdocs din directorul parinte XAMPP
-3. Accesam: http://localhost/wordpress si pornim procesul de instalare
-3.1 <img width="680" height="694" alt="image" src="https://github.com/user-attachments/assets/1d884d20-4bb9-4be6-94e3-a1a6165c9ccc" />
+1. În instalarea locală WordPress, accesează folderul wp-content/themes
 
-  <img width="674" height="255" alt="image" src="https://github.com/user-attachments/assets/9f26c003-44dd-4890-8c9e-0101911cec78" />
+<img width="467" height="152" alt="image" src="https://github.com/user-attachments/assets/c594867f-8738-4c72-a3fe-63f750c65cd8" />
 
-3.2 Introducem datele 
 
-  <img width="681" height="441" alt="image" src="https://github.com/user-attachments/assets/8364781b-4582-41cb-8a71-e4322df18374" />
+2. Creează un director pentru tema ta, de exemplu usm-theme
 
-3.3 Punem titlul Lab2WP
+<img width="478" height="166" alt="image" src="https://github.com/user-attachments/assets/6ad71b10-e7ea-4e6e-903e-0d58d9555481" />
 
-Inseram numele de utilizator si parola si email-ul
-  
-  <img width="678" height="460" alt="image" src="https://github.com/user-attachments/assets/81284296-befc-498c-ab4b-28b94514d32d" />
+3. Activează modul de depanare în wp-config.php, adăugând define('WP_DEBUG', true);
 
-4. Logare
+<img width="262" height="40" alt="image" src="https://github.com/user-attachments/assets/e25d5d33-3976-40f6-b26b-fe7640212ac8" />
 
-<img width="671" height="551" alt="image" src="https://github.com/user-attachments/assets/97d1fe9e-8ff1-4b73-ae50-346e9b0e7f61" />
+<img width="263" height="37" alt="image" src="https://github.com/user-attachments/assets/e561379d-2017-4538-aaa1-79d6d939a12b" />
 
-### Setarile initiale ale site-ului
+### Pasul 2. Crearea fișierelor obligatorii ale temei
 
-1. Accesam panoul de administrare,in acest panou accesam Settings -> General
+1. În folderul temei, creează fișierul style.css cu metadatele temei.
 
-Schimbam numele si fusul orar 
+2. După metadate, poți adăuga reguli CSS de bază.
 
-  <img width="694" height="661" alt="image" src="https://github.com/user-attachments/assets/33ecdfd4-9aa6-4c8a-8aa1-e17684e7ed77" />
+<img width="719" height="470" alt="image" src="https://github.com/user-attachments/assets/56fa3f24-471f-4729-ae05-d1fb745fd656" />
 
-  <img width="674" height="539" alt="image" src="https://github.com/user-attachments/assets/8130c2cc-4649-4697-9dc4-e2c8d0d0f731" />
+3. Creează fișierul index.php – șablonul principal al temei. Pentru început, adaugă o structură HTML de bază.
 
-In sectiunea Settings -> Permalinks accesam Post name pentru link-uri mai prietenoase 
+<img width="1217" height="738" alt="image" src="https://github.com/user-attachments/assets/d7f48b3d-2d57-42a7-8c58-bac81366083b" />
 
-  <img width="677" height="293" alt="image" src="https://github.com/user-attachments/assets/7ca03d42-b050-423d-80d5-021d59fa3611" />
+### Pasul 3. Componente comune ale șabloanelor
 
-2. Lucrul cu teme
+1. Creează fișierul header.php și mută acolo codul antetului site-ului (până la începutul conținutului principal).
 
-2.1 Accesam Appearance -> Themes 
+<img width="692" height="407" alt="image" src="https://github.com/user-attachments/assets/b09e24d5-96cf-4974-887c-2c8a43fa40d5" />
 
-  <img width="219" height="136" alt="image" src="https://github.com/user-attachments/assets/9e90d44f-e911-4ede-b21e-e1823c9cd486" />
+2.Creează fișierul footer.php și mută acolo codul subsolului site-ului (după conținutul principal).
 
-2.2 Instalam Astra 
 
-  <img width="643" height="638" alt="image" src="https://github.com/user-attachments/assets/eef9f577-ef5d-478b-9c89-8bd8d15477fe" />
+<img width="581" height="171" alt="image" src="https://github.com/user-attachments/assets/e644d05b-5a3e-4cb6-9b2b-59213a541349" />
 
-2.3 Activam tema si vedem cum se schimba aspectul site-ului 
+3. În index.php, include header.php și footer.php folosind funcțiile get_header() și get_footer().
 
-Cu Astra 
+<img width="774" height="289" alt="image" src="https://github.com/user-attachments/assets/71e15b27-87e3-49bb-a591-406e522a8615" />
 
-  <img width="1764" height="754" alt="image" src="https://github.com/user-attachments/assets/6c9288ec-146b-40df-b634-11e61f478abf" />
+4.Pe pagina principală, afișează o listă cu ultimele 5 postări folosind bucla WordPress.
 
-Fara Astra(cu alta tema) 
+<img width="773" height="701" alt="image" src="https://github.com/user-attachments/assets/dec34149-f2cc-46eb-b5f9-18f344d239f6" />
 
-  <img width="1801" height="810" alt="image" src="https://github.com/user-attachments/assets/76fc8814-5e0f-4b54-82d8-e06905e06618" />
+### Pasul 4. Fișierul de funcții
 
-2.4.1 Inseram logo-ul 
+1.Creează fișierul functions.php în directorul temei.
 
-  <img width="349" height="647" alt="image" src="https://github.com/user-attachments/assets/140db6e0-a05b-4596-b151-8b2320463fd0" />
+2.În functions.php, adaugă o funcție pentru încărcarea stilurilor temei folosind wp_enqueue_style().
 
-2.4.2 Alegem palitra de culori
+<img width="622" height="201" alt="image" src="https://github.com/user-attachments/assets/5d42e52f-e5b0-49fb-97af-e9037f43d1ef" />
 
-Accesam Global -> Colors
+### Pasul 5. Șabloane suplimentare
 
-  <img width="361" height="243" alt="image" src="https://github.com/user-attachments/assets/d6004ecd-1332-43b4-a1aa-ea6116678fa2" />
+1. Creează fișierul single.php pentru afișarea unei postări individuale.
 
-2.4.3 Schimbam titlul si adaugam o descriere sub barul de sus cu o descriere html 1
+Inlocuim the_excerpt() cu the_content() pentru a vedea tot textul postării.
 
-  <img width="348" height="102" alt="image" src="https://github.com/user-attachments/assets/52613f64-4dd5-450c-a86e-392006e4aaf0" />
+<img width="235" height="36" alt="image" src="https://github.com/user-attachments/assets/eeaf8b22-71e0-4caf-8481-f565f485c095" />
 
-  <img width="1522" height="72" alt="image" src="https://github.com/user-attachments/assets/a73fec1e-9af9-4889-8abe-74ee0ab77b22" />
+2. Creează fișierul page.php pentru afișarea paginilor.
 
-3. Lucrul cu plugin-uri
+<img width="878" height="651" alt="image" src="https://github.com/user-attachments/assets/4a0969ee-f236-407f-b4c7-b416801ed475" />
 
-3.1 Adaugam si activam plugim-urile Classic Editor si Contact Form 7
+Diferența față de single.php sunt ca eliminat metadatele precum the_author() și the_category(), 
 
-  <img width="226" height="185" alt="image" src="https://github.com/user-attachments/assets/6c0aef88-bc4e-452a-8681-dcf3c77b63f0" />
+deoarece paginile sunt considerate conținut static, nu cronologic
 
-  <img width="675" height="275" alt="image" src="https://github.com/user-attachments/assets/f596e182-f652-42ac-b83d-2c83da44c895" />
+3. Creează fișierul sidebar.php pentru bara laterală și include-l în șabloanele relevante cu get_sidebar()
 
-  <img width="674" height="287" alt="image" src="https://github.com/user-attachments/assets/ae5b083a-a655-4536-a93c-3497d0400ac0" />
+<img width="443" height="136" alt="image" src="https://github.com/user-attachments/assets/c0b20a60-9ca6-4c6b-8088-69fc8dbfb7ba" />
 
-  <img width="197" height="160" alt="image" src="https://github.com/user-attachments/assets/9799d4e1-e0cd-4c0e-ad0c-303c24c5aa51" />
+<img width="511" height="80" alt="image" src="https://github.com/user-attachments/assets/7c3f892a-aeea-4a74-be66-69be467c790b" />
 
-  <img width="1647" height="213" alt="image" src="https://github.com/user-attachments/assets/7579c18d-b92b-418d-9054-4357160a1b20" />
+4. Creează fișierul comments.php pentru afișarea comentariilor și include-l în single.php și page.php.
 
-3.2 Verificam functionalitatile acestora 
+<img width="1160" height="853" alt="image" src="https://github.com/user-attachments/assets/63f7509a-f485-4de5-81d1-f6cbf11dafb2" />
 
-Accesam Page -> Add Page pentru a vedea lucrul Classic Editor
+<img width="385" height="86" alt="image" src="https://github.com/user-attachments/assets/8da5dddf-3d40-4b22-a046-184bdcf6e373" />
 
-  <img width="1515" height="671" alt="image" src="https://github.com/user-attachments/assets/1a392bd4-4a10-4b4b-9903-cccbf4f5d053" />
+<img width="448" height="88" alt="image" src="https://github.com/user-attachments/assets/c51f9bf7-8a45-4193-87f9-5045438e780a" />
 
-Accesam Contact -> Contact forms pentru a vedea lucrul Contact Form 7 
+5.Creează fișierul archive.php pentru afișarea arhivelor postărilor.
 
-  <img width="1654" height="172" alt="image" src="https://github.com/user-attachments/assets/f90759fd-7729-4f7b-b4e5-f2a9a42755c5" />
+<img width="907" height="748" alt="image" src="https://github.com/user-attachments/assets/a0f8c764-2cbd-4f69-a324-953e90d456cf" />
 
-3.3 Dezactivam unul si vedem ca functionalitatea a disparut
+### Pasul 6. Stilizarea temei
 
-Dezactivam Classic Editor 
+Adaugă stiluri pentru elementele principale ale temei (antet, subsol, conținut, bara laterală).
 
-<img width="669" height="102" alt="image" src="https://github.com/user-attachments/assets/bb4f74ed-3241-4c57-a286-701e7ee3287e" />
+<img width="659" height="709" alt="image" src="https://github.com/user-attachments/assets/c26fe9cb-3b73-42d6-a64c-c450fdeef326" />
 
-4. Creare de continut
+<img width="862" height="839" alt="image" src="https://github.com/user-attachments/assets/d22577f7-647c-4804-9574-731015859494" />
 
-4.1 Cream o pagina simpla "Contacte" si inseram un formular 
+<img width="458" height="200" alt="image" src="https://github.com/user-attachments/assets/1dc491f7-6297-4737-8863-5df0e451e029" />
 
-  <img width="1648" height="61" alt="image" src="https://github.com/user-attachments/assets/859782a1-2b35-46ce-b8f0-847f42f1d7e3" />
+### Pasul 7. Captura de ecran a temei
 
-  <img width="1691" height="834" alt="image" src="https://github.com/user-attachments/assets/a7b9ac53-42da-4099-b81e-374968e598c6" />
+Adaugă în folderul temei fișierul screenshot.png – o imagine de previzualizare a temei (dimensiune 1200x900px).
 
-4.2 Cream postari cu continut diferit 
+<img width="1449" height="806" alt="image" src="https://github.com/user-attachments/assets/b0a9f5f6-8866-48cd-ad6a-f1e00a343a02" />
 
-Cu imagine 
+### Pasul 8. Activarea temei
 
-  <img width="1306" height="621" alt="image" src="https://github.com/user-attachments/assets/c8f12d5f-7789-43fd-a547-01de19cacf14" />
+1.În panoul de administrare WordPress, accesează secțiunea Appearance → Themes.
 
-Cu Continut(o lista)
+2.Găsește tema ta și activeaz-o.
 
-  <img width="1306" height="621" alt="image" src="https://github.com/user-attachments/assets/eebda385-f74a-4a77-a97c-3dae53e14048" />
+<img width="422" height="364" alt="image" src="https://github.com/user-attachments/assets/214ca059-3655-4140-a3c9-473a29eb8ee7" />
 
-4.3 Verificam cum asestea sunt afisate:
+3.Verifică modul în care site-ul este afișat cu tema ta
 
-Observam ca Acestea sunt aranjate ca optiuni in meniul din headbar 
+<img width="1554" height="761" alt="image" src="https://github.com/user-attachments/assets/3bdb61d3-9ee3-4449-a912-67557de46236" />
 
-  <img width="1646" height="426" alt="image" src="https://github.com/user-attachments/assets/058146a7-8b21-4396-b95c-6527db615785" />
+## Întrebări de control
 
-## Intrebari de control
+1.Care sunt cele două fișiere obligatorii pentru orice temă WordPress?
 
-1.Ce face o temă în WordPress și ce face un plugin?
+O temă WordPress nu poate funcționa fără următoarele două fișiere style.css si index.php
 
-O tema ne permite sa vedem cum arata site-ul iar plugin-ul ce face site-ul 
+2.Cum se includ părțile comune ale șabloanelor (header, footer, sidebar)?
 
-2. De ce nu se pierde continutul cand schimbi tema?
+WordPress folosește funcții dedicate pentru a apela secțiunile repetitive ale site-ului: get_header(),get_footer(),get_sidebar()
 
-Pentru ca acesta se salveaza in baza de date 
+3.Care este diferența dintre index.php, single.php și page.php?
 
-3. Cum se poate modifica aspectul site-ului fara a modifica codul
+index.php afișează lista generală cu ultimele noutăți, în timp ce single.php deschide un singur articol complet, 
 
-Folosind butonul Customize din meniul WordPress(Appearance)
+iar page.php încarcă paginile statice precum "Despre" sau "Contact".
 
-  <img width="374" height="571" alt="image" src="https://github.com/user-attachments/assets/76d642e1-c27a-46c6-bc2c-eb06fe25334e" />
+4.Care este rolul fișierului functions.php într-o temă?
 
+functions.php este "creierul" temei, fiind locul unde încarci stilurile prin wp_enqueue_style() și activezi opțiuni.
