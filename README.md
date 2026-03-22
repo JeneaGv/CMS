@@ -1,20 +1,12 @@
-# Laborator 1 Instalare WordPress
+# Lucrarea de laborator nr. 3. Dezvoltarea unei teme WordPress simple
 
 ## Preconditii 
 
-### Instalare Xampp
-
-1. Accesam linkul si instalam Xampp pentru SO corespunzator : https://www.apachefriends.org/download.html
-2. Accesam panela de control a Xampp si pornim modulele Apache si MySQL
-
-  <img width="826" height="538" alt="image" src="https://github.com/user-attachments/assets/ea26ec37-648c-4436-9245-30416d737bd0" /> 
-
-3. Cream o baza de date wp_lab2
-  <img width="674" height="174" alt="image" src="https://github.com/user-attachments/assets/d0d3583e-c861-4b4c-9e88-e8e70078dfa4" />
+De elaborat Laboratorul nr. 2
 
 ## Conditii
 
-### Instalare WordPress
+### Pasul 1. Pregătirea mediului
 
 1. Accesam linkul si instalam WordPress pentru SO corespunzator: https://wordpress.org/download/
 2. Instalam fisierul zip si cu ajutorul la WinRAR dezarhivam arhiva in folderul htdocs din directorul parinte XAMPP
