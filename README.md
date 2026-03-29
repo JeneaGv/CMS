@@ -1,21 +1,18 @@
-# Lucrarea de laborator nr. 3. Dezvoltarea unei teme WordPress simple
-
-## Preconditii 
-
-De elaborat Laboratorul nr. 2
+# Lucrarea de laborator nr. 4. Dezvoltarea unui plugin pentru WordPress
 
 ## Condiții
 
+Creează un plugin educațional numit USM Notes, care adaugă pe site o secțiune „Notițe” cu priorități și o dată de reamintire.
+
 ### Pasul 1. Pregătirea mediului
 
-1. În instalarea locală WordPress, accesează folderul wp-content/themes
+1. În instalarea locală WordPress, accesează folderul wp-content/plugins
 
-<img width="467" height="152" alt="image" src="https://github.com/user-attachments/assets/c594867f-8738-4c72-a3fe-63f750c65cd8" />
+<img width="249" height="37" alt="image" src="https://github.com/user-attachments/assets/361903e2-05b0-4188-9a3a-6a1be7ab4afa" />
 
+2. Creează un director pentru tema ta, de exemplu usm-notes
 
-2. Creează un director pentru tema ta, de exemplu usm-theme
-
-<img width="478" height="166" alt="image" src="https://github.com/user-attachments/assets/6ad71b10-e7ea-4e6e-903e-0d58d9555481" />
+<img width="221" height="25" alt="image" src="https://github.com/user-attachments/assets/d8313ec2-1545-4c98-966a-5f582069d4bc" />
 
 3. Activează modul de depanare în wp-config.php, adăugând define('WP_DEBUG', true);
 
@@ -23,123 +20,138 @@ De elaborat Laboratorul nr. 2
 
 <img width="263" height="37" alt="image" src="https://github.com/user-attachments/assets/e561379d-2017-4538-aaa1-79d6d939a12b" />
 
-### Pasul 2. Crearea fișierelor obligatorii ale temei
+### Pasul 2. Crearea fișierului principal al pluginului
 
-1. În folderul temei, creează fișierul style.css cu metadatele temei.
+1. În folderul pluginului, creează fișierul usm-notes.php
 
-2. După metadate, poți adăuga reguli CSS de bază.
+2. Adaugă în acesta metadatele pluginului (nume, descriere, versiune, autor).
 
-<img width="719" height="470" alt="image" src="https://github.com/user-attachments/assets/56fa3f24-471f-4729-ae05-d1fb745fd656" />
+<img width="525" height="169" alt="image" src="https://github.com/user-attachments/assets/5e99880e-8340-4787-bf03-644dee5cbc49" />
 
-3. Creează fișierul index.php – șablonul principal al temei. Pentru început, adaugă o structură HTML de bază.
+3. Activează pluginul în panoul de administrare WordPress.
 
-<img width="1217" height="738" alt="image" src="https://github.com/user-attachments/assets/d7f48b3d-2d57-42a7-8c58-bac81366083b" />
+<img width="1712" height="72" alt="image" src="https://github.com/user-attachments/assets/de09b3c9-398b-40db-a3bf-70d1edcff4a5" />
 
-### Pasul 3. Componente comune ale șabloanelor
+4.Asigură-te că pluginul este activ și că nu sunt erori.
 
-1. Creează fișierul header.php și mută acolo codul antetului site-ului (până la începutul conținutului principal).
+### Pasul 3. Înregistrarea Custom Post Type (CPT)
 
-<img width="692" height="407" alt="image" src="https://github.com/user-attachments/assets/b09e24d5-96cf-4974-887c-2c8a43fa40d5" />
+1.Adaugă o funcție pentru înregistrarea CPT „Notițe” (Notes) folosind register_post_type()
 
-2.Creează fișierul footer.php și mută acolo codul subsolului site-ului (după conținutul principal).
+2.Setează parametrii CPT:
+
+* public,
+* suport pentru titlu, editor, autor, miniatură,
+* pagină de arhivă,
+* pictogramă în admin,
+* etichete (labels) pentru utilizare facilă.
+
+<img width="541" height="134" alt="image" src="https://github.com/user-attachments/assets/8ce60430-def5-4ddb-9fbd-fdefa6d99b12" />
+
+3. Înregistrează CPT-ul la inițializarea WordPress folosind hook-ul init
+
+<img width="375" height="22" alt="image" src="https://github.com/user-attachments/assets/200aa181-4f18-462d-ada5-92769ceb66f8" />
+
+### Pasul 4. Înregistrarea taxonomiei personalizate
+
+1.Adaugă o funcție pentru înregistrarea taxonomiei „Prioritate” (Priority) folosind register_taxonomy().
+
+2.Leagă taxonomia de CPT-ul „Notițe”.
+
+3.Setează parametrii taxonomiei:
+
+* ierarhică (precum categoriile),
+* publică,
+* etichete (labels) pentru utilizare facilă.
+
+4.Înregistrează taxonomia la inițializarea WordPress folosind hook-ul init
+
+<img width="661" height="182" alt="image" src="https://github.com/user-attachments/assets/fde96ad9-a6d4-40e4-ae73-b8ce2ec41159" />
+
+### Pasul 5. Adăugarea unui metabox pentru data de reamintire
+
+1.Creează o funcție pentru adăugarea unui metabox în editorul CPT „Notițe” folosind add_meta_box().
+
+2.În metabox, adaugă un câmp pentru selectarea datei de reamintire (utilizează HTML5 input type="date").
+
+3.Creează o funcție pentru salvarea valorii datei la salvarea postării folosind hook-ul save_post.
+
+4.Asigură-te că data este salvată corect și că este afișată la editarea postării.
+
+5.Adaugă verificarea nonce pentru securitate la salvarea metadatelor.
+
+6.Fă câmpul pentru dată obligatoriu.
+
+7.Adaugă validare pentru dată (de exemplu, data nu poate fi în trecut). În caz de eroare la salvare, afișează un mesaj corespunzător.
+
+8.Afișează data de reamintire în lista postărilor CPT „Notițe” din admin.
+
+<img width="902" height="312" alt="image" src="https://github.com/user-attachments/assets/449b31f3-79fb-41c2-a89c-ad08fa57a7cd" />
+
+### Pasul 6. Crearea unui shortcode pentru afișarea notițelor
+
+1.Creează o funcție pentru procesarea shortcode-ului [usm_notes priority="X" before_date="YYYY-MM-DD"], unde priority este filtrul după prioritate, iar before_date – filtrul după data de reamintire.
+
+2.În funcție, obține și afișează lista notițelor care corespund filtrelor.
+
+3.Înregistrează shortcode-ul folosind add_shortcode().
+
+4.Adaugă stiluri pentru afișarea listei de notițe.
+
+5.Gestionează cazurile în care nu există notițe pentru filtrele respective și afișează mesajul: „Nu există notițe cu parametrii specificați”.
+
+6.Dacă priority sau before_date nu sunt specificate, shortcode-ul trebuie să afișeze toate notițele.
+
+<img width="1026" height="482" alt="image" src="https://github.com/user-attachments/assets/9d3b521b-42a1-429e-a103-b2dfcc8d3491" />
 
 
-<img width="581" height="171" alt="image" src="https://github.com/user-attachments/assets/e644d05b-5a3e-4cb6-9b2b-59213a541349" />
+### Pasul 7. Testarea pluginului
 
-3. În index.php, include header.php și footer.php folosind funcțiile get_header() și get_footer().
+1.Adaugă 5–6 notițe cu priorități și date de reamintire diferite.
 
-<img width="774" height="289" alt="image" src="https://github.com/user-attachments/assets/71e15b27-87e3-49bb-a591-406e522a8615" />
+<img width="224" height="73" alt="image" src="https://github.com/user-attachments/assets/29e5059d-d7a9-41de-9f95-584497f098c4" />
 
-4.Pe pagina principală, afișează o listă cu ultimele 5 postări folosind bucla WordPress.
+<img width="1732" height="704" alt="image" src="https://github.com/user-attachments/assets/6dd4cd9a-63ba-4cbd-9197-f2007dea46a5" />
 
-<img width="773" height="701" alt="image" src="https://github.com/user-attachments/assets/dec34149-f2cc-46eb-b5f9-18f344d239f6" />
+La fel facem inca 4 notite
 
-### Pasul 4. Fișierul de funcții
+<img width="1714" height="341" alt="image" src="https://github.com/user-attachments/assets/d5aa5c6f-d230-4a8f-8790-d4e5e7df122d" />
 
-1.Creează fișierul functions.php în directorul temei.
+2.Atribuie fiecăreia o prioritate (High/Medium/Low) și completează câmpul „Due Date”.
 
-2.În functions.php, adaugă o funcție pentru încărcarea stilurilor temei folosind wp_enqueue_style().
+<img width="155" height="329" alt="image" src="https://github.com/user-attachments/assets/9d0ca620-1707-4baf-9722-e7d76e930f04" />
 
-<img width="622" height="201" alt="image" src="https://github.com/user-attachments/assets/5d42e52f-e5b0-49fb-97af-e9037f43d1ef" />
+3.Creează pagina „All Notes” și inserează următoarele shortcode-uri:
 
-### Pasul 5. Șabloane suplimentare
+* [usm_notes] – pentru afișarea tuturor notițelor.
 
-1. Creează fișierul single.php pentru afișarea unei postări individuale.
+<img width="880" height="791" alt="image" src="https://github.com/user-attachments/assets/3cab1aa7-99f4-4a8b-9281-235d25a13836" />
 
-Inlocuim the_excerpt() cu the_content() pentru a vedea tot textul postării.
+  
+* [usm_notes priority="high"] – pentru notițele cu prioritate mare.
 
-<img width="235" height="36" alt="image" src="https://github.com/user-attachments/assets/eeaf8b22-71e0-4caf-8481-f565f485c095" />
+<img width="848" height="558" alt="image" src="https://github.com/user-attachments/assets/eb96ee25-c7fb-4b19-83e4-082311add788" />
 
-2. Creează fișierul page.php pentru afișarea paginilor.
+* [usm_notes before_date="2026-03-30"] – pentru notițele cu dată de reamintire anterioară zilei de 30 martie 2026.
 
-<img width="878" height="651" alt="image" src="https://github.com/user-attachments/assets/4a0969ee-f236-407f-b4c7-b416801ed475" />
-
-Diferența față de single.php sunt ca eliminat metadatele precum the_author() și the_category(), 
-
-deoarece paginile sunt considerate conținut static, nu cronologic
-
-3. Creează fișierul sidebar.php pentru bara laterală și include-l în șabloanele relevante cu get_sidebar()
-
-<img width="443" height="136" alt="image" src="https://github.com/user-attachments/assets/c0b20a60-9ca6-4c6b-8088-69fc8dbfb7ba" />
-
-<img width="511" height="80" alt="image" src="https://github.com/user-attachments/assets/7c3f892a-aeea-4a74-be66-69be467c790b" />
-
-4. Creează fișierul comments.php pentru afișarea comentariilor și include-l în single.php și page.php.
-
-<img width="1160" height="853" alt="image" src="https://github.com/user-attachments/assets/63f7509a-f485-4de5-81d1-f6cbf11dafb2" />
-
-<img width="385" height="86" alt="image" src="https://github.com/user-attachments/assets/8da5dddf-3d40-4b22-a046-184bdcf6e373" />
-
-<img width="448" height="88" alt="image" src="https://github.com/user-attachments/assets/c51f9bf7-8a45-4193-87f9-5045438e780a" />
-
-5.Creează fișierul archive.php pentru afișarea arhivelor postărilor.
-
-<img width="907" height="748" alt="image" src="https://github.com/user-attachments/assets/a0f8c764-2cbd-4f69-a324-953e90d456cf" />
-
-### Pasul 6. Stilizarea temei
-
-Adaugă stiluri pentru elementele principale ale temei (antet, subsol, conținut, bara laterală).
-
-<img width="659" height="709" alt="image" src="https://github.com/user-attachments/assets/c26fe9cb-3b73-42d6-a64c-c450fdeef326" />
-
-<img width="862" height="839" alt="image" src="https://github.com/user-attachments/assets/d22577f7-647c-4804-9574-731015859494" />
-
-<img width="458" height="200" alt="image" src="https://github.com/user-attachments/assets/1dc491f7-6297-4737-8863-5df0e451e029" />
-
-### Pasul 7. Captura de ecran a temei
-
-Adaugă în folderul temei fișierul screenshot.png – o imagine de previzualizare a temei (dimensiune 1200x900px).
-
-<img width="1449" height="806" alt="image" src="https://github.com/user-attachments/assets/b0a9f5f6-8866-48cd-ad6a-f1e00a343a02" />
-
-### Pasul 8. Activarea temei
-
-1.În panoul de administrare WordPress, accesează secțiunea Appearance → Themes.
-
-2.Găsește tema ta și activeaz-o.
-
-<img width="422" height="364" alt="image" src="https://github.com/user-attachments/assets/214ca059-3655-4140-a3c9-473a29eb8ee7" />
-
-3.Verifică modul în care site-ul este afișat cu tema ta
-
-<img width="1554" height="761" alt="image" src="https://github.com/user-attachments/assets/3bdb61d3-9ee3-4449-a912-67557de46236" />
+<img width="816" height="810" alt="image" src="https://github.com/user-attachments/assets/d3603ec9-d10e-4f98-b63d-0fd780380bb6" />
 
 ## Întrebări de control
 
-1.Care sunt cele două fișiere obligatorii pentru orice temă WordPress?
+1.Care este diferența esențială dintre o taxonomie personalizată și un metacâmp? Oferă un exemplu când este mai potrivit să folosești taxonomie și când metadate.
 
-O temă WordPress nu poate funcționa fără următoarele două fișiere style.css si index.php
+Taxonomia grupează postările (ex: toate notițele "Urgente"), în timp ce Metacâmpul stochează detalii unice (ex: o dată specifică). 
 
-2.Cum se includ părțile comune ale șabloanelor (header, footer, sidebar)?
+Folosești taxonomia pentru categorii și metadatele pentru proprietăți individuale care nu necesită pagini de arhivă.
 
-WordPress folosește funcții dedicate pentru a apela secțiunile repetitive ale site-ului: get_header(),get_footer(),get_sidebar()
+2.De ce este necesar nonce la salvarea metacâmpurilor și ce se întâmplă dacă nu este verificat?
 
-3.Care este diferența dintre index.php, single.php și page.php?
+Nonce-ul este un token de securitate care confirmă că salvarea datelor vine din formularul tău legitim. 
 
-index.php afișează lista generală cu ultimele noutăți, în timp ce single.php deschide un singur articol complet, 
+Fără el, site-ul este expus atacurilor de tip CSRF, permițând hackerilor să modifice baza de date prin acțiuni mascate executate în numele unui admin logat.
 
-iar page.php încarcă paginile statice precum "Despre" sau "Contact".
+3.Care sunt cei mai importanți parametri ai register_post_type() și register_taxonomy() pentru frontend și UX (numește cel puțin trei și explică de ce)?
 
-4.Care este rolul fișierului functions.php într-o temă?
+Pentru succesul unui plugin, public asigură vizibilitatea în site, has_archive creează automat o pagină cu lista tuturor postărilor, 
 
-functions.php este "creierul" temei, fiind locul unde încarci stilurile prin wp_enqueue_style() și activezi opțiuni.
+iar hierarchical (pentru taxonomii) permite utilizatorului să aleagă priorități prin bife simple, îmbunătățind considerabil experiența de editare.
