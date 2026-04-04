@@ -1,18 +1,14 @@
-# Lucrarea de laborator nr. 4. Dezvoltarea unui plugin pentru WordPress
+# Lucrarea de laborator nr. 5. Securitatea WordPress
 
 ## Condiții
 
-Creează un plugin educațional numit USM Notes, care adaugă pe site o secțiune „Notițe” cu priorități și o dată de reamintire.
-
 ### Pasul 1. Pregătirea mediului
 
-1. În instalarea locală WordPress, accesează folderul wp-content/plugins
+1. În instalarea locală WordPress, accesează panoul de administrare.
 
-<img width="249" height="37" alt="image" src="https://github.com/user-attachments/assets/361903e2-05b0-4188-9a3a-6a1be7ab4afa" />
+2. Asigură-te că ai acces de administrator.
 
-2. Creează un director pentru tema ta, de exemplu usm-notes
-
-<img width="221" height="25" alt="image" src="https://github.com/user-attachments/assets/d8313ec2-1545-4c98-966a-5f582069d4bc" />
+<img width="1737" height="220" alt="image" src="https://github.com/user-attachments/assets/890fb6a4-31f4-406f-9dd2-5cd3344a6f2a" />
 
 3. Activează modul de depanare în wp-config.php, adăugând define('WP_DEBUG', true);
 
@@ -20,138 +16,235 @@ Creează un plugin educațional numit USM Notes, care adaugă pe site o secțiun
 
 <img width="263" height="37" alt="image" src="https://github.com/user-attachments/assets/e561379d-2017-4538-aaa1-79d6d939a12b" />
 
-### Pasul 2. Crearea fișierului principal al pluginului
+### Pasul 2. Gestionarea rolurilor și parolelor
 
-1. În folderul pluginului, creează fișierul usm-notes.php
+1. Creează un utilizator de test cu rolul Autor (pentru verificări ulterioare).
 
-2. Adaugă în acesta metadatele pluginului (nume, descriere, versiune, autor).
+Intram in Users->All Users->Add User 
 
-<img width="525" height="169" alt="image" src="https://github.com/user-attachments/assets/5e99880e-8340-4787-bf03-644dee5cbc49" />
+Completam toate campurile si cream utilizatorul
 
-3. Activează pluginul în panoul de administrare WordPress.
+<img width="1465" height="56" alt="image" src="https://github.com/user-attachments/assets/716af227-1842-40d8-ae13-e0becb921380" />
 
-<img width="1712" height="72" alt="image" src="https://github.com/user-attachments/assets/de09b3c9-398b-40db-a3bf-70d1edcff4a5" />
+2. Verifică dacă fiecare administrator are parole complexe activate (minimum 8 caractere, litere/cifre/simboluri).
 
-4.Asigură-te că pluginul este activ și că nu sunt erori.
+<img width="594" height="82" alt="image" src="https://github.com/user-attachments/assets/608dc77e-f325-408d-9847-d2330745a21e" />
 
-### Pasul 3. Înregistrarea Custom Post Type (CPT)
+### Pasul 3. Actualizări ale nucleului, temelor și pluginurilor
 
-1.Adaugă o funcție pentru înregistrarea CPT „Notițe” (Notes) folosind register_post_type()
+1.Verifică existența actualizărilor pentru WordPress, teme și pluginuri.
 
-2.Setează parametrii CPT:
+Intram in Dashboard->Updates si vedem toate acutalizarile existente
 
-* public,
-* suport pentru titlu, editor, autor, miniatură,
-* pagină de arhivă,
-* pictogramă în admin,
-* etichete (labels) pentru utilizare facilă.
+2.Actualizează toate componentele la ultimele versiuni disponibile.
 
-<img width="541" height="134" alt="image" src="https://github.com/user-attachments/assets/8ce60430-def5-4ddb-9fbd-fdefa6d99b12" />
+<img width="938" height="706" alt="image" src="https://github.com/user-attachments/assets/7b3423ae-c02f-43b4-aa93-6207d8f4a5f9" />
 
-3. Înregistrează CPT-ul la inițializarea WordPress folosind hook-ul init
+Observam ca nu avem componente ce necesita actualizare
 
-<img width="375" height="22" alt="image" src="https://github.com/user-attachments/assets/200aa181-4f18-462d-ada5-92769ceb66f8" />
+3.Configurează actualizările automate pentru teme și pluginuri.
 
-### Pasul 4. Înregistrarea taxonomiei personalizate
+Pentru Pluginuri:
 
-1.Adaugă o funcție pentru înregistrarea taxonomiei „Prioritate” (Priority) folosind register_taxonomy().
+Intram Plugins->Installed Plugins->Bulk Actions(Enable auto update)
 
-2.Leagă taxonomia de CPT-ul „Notițe”.
+Pentru Teme:
 
-3.Setează parametrii taxonomiei:
+Intram la Appearance -> Themes
 
-* ierarhică (precum categoriile),
-* publică,
-* etichete (labels) pentru utilizare facilă.
+Dam click pe imaginea de previzualizare a fiecărei teme instalate.
 
-4.Înregistrează taxonomia la inițializarea WordPress folosind hook-ul init
+In fereastra care se deschide, sub numele temei și autor activam actualizările automat
 
-<img width="661" height="182" alt="image" src="https://github.com/user-attachments/assets/fde96ad9-a6d4-40e4-ae73-b8ce2ec41159" />
+<img width="228" height="134" alt="image" src="https://github.com/user-attachments/assets/e7b5b205-ae1d-4cb1-b68f-82a7a0ddf99b" />
 
-### Pasul 5. Adăugarea unui metabox pentru data de reamintire
+4.Asigură-te că toate actualizările s-au aplicat cu succes și că site-ul funcționează corect.
 
-1.Creează o funcție pentru adăugarea unui metabox în editorul CPT „Notițe” folosind add_meta_box().
+<img width="190" height="37" alt="image" src="https://github.com/user-attachments/assets/974d7fe6-2728-4708-9a14-5dd2a4fcbca3" />
 
-2.În metabox, adaugă un câmp pentru selectarea datei de reamintire (utilizează HTML5 input type="date").
+<img width="308" height="45" alt="image" src="https://github.com/user-attachments/assets/7a6d34be-fedb-4f91-9faf-d866392fdd93" />
 
-3.Creează o funcție pentru salvarea valorii datei la salvarea postării folosind hook-ul save_post.
+<img width="1430" height="847" alt="image" src="https://github.com/user-attachments/assets/a8069f7d-3d11-4e96-bf0f-7f105317477a" />
 
-4.Asigură-te că data este salvată corect și că este afișată la editarea postării.
+### Pasul 4. Hardening de bază
 
-5.Adaugă verificarea nonce pentru securitate la salvarea metadatelor.
+1.Dezactivează editarea fișierelor din panoul de administrare, adăugând în wp-config.php:
 
-6.Fă câmpul pentru dată obligatoriu.
+<img width="363" height="44" alt="image" src="https://github.com/user-attachments/assets/c954fe96-13c9-4494-a066-eeb4e12f7a3d" />
 
-7.Adaugă validare pentru dată (de exemplu, data nu poate fi în trecut). În caz de eroare la salvare, afișează un mesaj corespunzător.
+3.Protejează fișierul wp-config.php, adăugând în .htaccess:
 
-8.Afișează data de reamintire în lista postărilor CPT „Notițe” din admin.
+<img width="217" height="91" alt="image" src="https://github.com/user-attachments/assets/1898573e-ebaf-4dd2-9d3f-68aa91c188fb" />
 
-<img width="902" height="312" alt="image" src="https://github.com/user-attachments/assets/449b31f3-79fb-41c2-a89c-ad08fa57a7cd" />
+### Pasul 5. Instalarea și configurarea inițială a All In One WP Security & Firewall (AIOS)
 
-### Pasul 6. Crearea unui shortcode pentru afișarea notițelor
+1.Instalează și activează pluginul All In One WP Security & Firewall.
 
-1.Creează o funcție pentru procesarea shortcode-ului [usm_notes priority="X" before_date="YYYY-MM-DD"], unde priority este filtrul după prioritate, iar before_date – filtrul după data de reamintire.
+Mergem la Plugins->Add Plugin
 
-2.În funcție, obține și afișează lista notițelor care corespund filtrelor.
+Cautam  All In One WP Security & Firewall. AIOS si instalam
 
-3.Înregistrează shortcode-ul folosind add_shortcode().
+Intram la Plugins->Installed Plugins si activam acesta
 
-4.Adaugă stiluri pentru afișarea listei de notițe.
+2.Accesează secțiunea pluginului din panoul de administrare.
 
-5.Gestionează cazurile în care nu există notițe pentru filtrele respective și afișează mesajul: „Nu există notițe cu parametrii specificați”.
+Accesam sectiunea AIOS aparuta
 
-6.Dacă priority sau before_date nu sunt specificate, shortcode-ul trebuie să afișeze toate notițele.
+3.Configurează următorii parametri:
 
-<img width="1026" height="482" alt="image" src="https://github.com/user-attachments/assets/9d3b521b-42a1-429e-a103-b2dfcc8d3491" />
+User Login:
+
+Activează Login Lockdown. Parametri recomandați pentru testare: Max Login Attempts: 5, Login Retry Time Period: 15 min, Lockout Time: 30 min.
+
+<img width="1210" height="240" alt="image" src="https://github.com/user-attachments/assets/811faf3b-e17b-4ddc-8108-546c5b35ecf4" />
+
+Activează Force Logout (de exemplu, 24h) pentru a limita sesiunile „eterne”.
+
+<img width="920" height="285" alt="image" src="https://github.com/user-attachments/assets/f7ca32d9-27fc-48c3-a658-1e1137fe9699" />
+
+Am lasat valoarea implicita de o ora
+
+User Accounts:
+
+Verifică dacă există un utilizator cu loginul admin. Dacă da — redenumește-l prin AIOS cu un nume de utilizator sigur.
+
+Nu avem utilizatori de genu
+
+User Registration:
+
+Dezactivează auto-aprobarea sau activează aprobarea manuală a utilizatorilor noi dacă înregistrarea este activată.
+
+<img width="1030" height="172" alt="image" src="https://github.com/user-attachments/assets/e4b39390-3a65-4562-a3c6-11a2730270e0" />
+
+Filesystem Security:
+
+Rulează verificarea File Permissions și aplică corecturile recomandate (nu seta permisiuni scriere globale).
+
+<img width="187" height="52" alt="image" src="https://github.com/user-attachments/assets/ab271a77-8759-4ee6-acf5-d0b91e255bf2" />
+
+<img width="834" height="123" alt="image" src="https://github.com/user-attachments/assets/70140a7f-c717-4fa8-8740-fc72f7dc1afa" />
+
+Firewall:
+
+Activează Basic Firewall (începe cu nivelul de bază).
+
+<img width="658" height="153" alt="image" src="https://github.com/user-attachments/assets/73c3b1dd-40dd-4f86-b858-9e14d2a3e9f7" />
+
+Activează protecția împotriva Bad Query Strings, XSS, directory browsing.
+
+<img width="668" height="186" alt="image" src="https://github.com/user-attachments/assets/c78ba09e-2195-4c6b-a306-a544b1bf409d" />
+
+<img width="691" height="170" alt="image" src="https://github.com/user-attachments/assets/1e7d3190-2767-44c1-851b-29e7ae0c112f" />
+
+<img width="692" height="215" alt="image" src="https://github.com/user-attachments/assets/5c6d9080-c262-406e-85e5-0d452f4997c9" />
+
+Brute Force:
+
+Activează Rename Login Page (schimbă URL-ul de autentificare de la /wp-login.php la ceva unic, de ex. /login-<slug>).
+
+<img width="1690" height="224" alt="image" src="https://github.com/user-attachments/assets/dcab3d04-c457-44fb-92b7-4374dbc4f927" />
+
+Salvează noul URL într-un manager de parole!
+
+Scanner / Malware:
+
+Configurează file change detection (notificări pe email).
+
+<img width="767" height="182" alt="image" src="https://github.com/user-attachments/assets/6fada56f-bccc-4681-a7c4-965eb4b2578b" />
+
+Backup:
+
+În secțiunea Database, creează o copie de rezervă a BD (stocheaz-o în afara rădăcinii web). Configurează un program de backup, dacă este disponibil.
+
+<img width="712" height="206" alt="image" src="https://github.com/user-attachments/assets/5998f175-87b8-4d77-8aea-3c40c8a3db25" />
+
+Apasam pe linkul de mai jos,trecem toti pasii si facem backup la baza de date
+
+Setam ca acesta sa se execute odata pe saptamana 
+
+<img width="754" height="66" alt="image" src="https://github.com/user-attachments/assets/39ceed04-d1ed-492d-910f-8b3f6f04199a" />
+
+Notifications:
+
+Activează notificări pe email pentru evenimente importante (de ex. blocare, cont nou de admin, modificări de fișiere).
+
+Lockdown
+
+<img width="1010" height="209" alt="image" src="https://github.com/user-attachments/assets/079b0099-c451-4e29-a1a0-af8da282c1f0" />
+
+Scanner
+
+<img width="851" height="227" alt="image" src="https://github.com/user-attachments/assets/74f22835-ae57-455e-89f6-853dcaea5c5e" />
+
+backup
+
+<img width="881" height="57" alt="image" src="https://github.com/user-attachments/assets/4ceacd5e-a652-4ba1-92c9-0f31faf47897" />
+
+### Pasul 6. Testarea protecției brute-force (pe un utilizator de test)
+
+1.Deconectează-te din admin (sau folosește o fereastră privată).
+
+<img width="681" height="463" alt="image" src="https://github.com/user-attachments/assets/7db16e62-1718-41da-be47-d64139fa0a11" />
+
+2.Accesează noul URL de autentificare, încearcă să introduci o parolă greșită de 5–6 ori.
+
+<img width="498" height="47" alt="image" src="https://github.com/user-attachments/assets/770be70b-3ae3-426a-933d-252ce638ee83" />
+
+3.Asigură-te că Lockdown-ul s-a activat (blocare IP/utilizator).
+
+<img width="851" height="149" alt="image" src="https://github.com/user-attachments/assets/ee6dd3b4-182b-409e-a6fb-2f78117679a3" />
 
 
-### Pasul 7. Testarea pluginului
+4.Verifică înregistrarea blocării în WP Security → Dashboard / Logs și (dacă este necesar) deblochează IP-ul de test.
 
-1.Adaugă 5–6 notițe cu priorități și date de reamintire diferite.
+<img width="1657" height="646" alt="image" src="https://github.com/user-attachments/assets/e2a9a5a2-edbe-46b3-abd0-9c29c5597811" />
 
-<img width="224" height="73" alt="image" src="https://github.com/user-attachments/assets/29e5059d-d7a9-41de-9f95-584497f098c4" />
+### Pasul 7. Restaurarea din backup
 
-<img width="1732" height="704" alt="image" src="https://github.com/user-attachments/assets/6dd4cd9a-63ba-4cbd-9197-f2007dea46a5" />
+1.Șterge o postare de test și o imagine aleatorie.
 
-La fel facem inca 4 notite
+<img width="940" height="807" alt="image" src="https://github.com/user-attachments/assets/924c6a8e-44ca-4f3e-8bc0-51fb2f035530" />
 
-<img width="1714" height="341" alt="image" src="https://github.com/user-attachments/assets/d5aa5c6f-d230-4a8f-8790-d4e5e7df122d" />
+<img width="1740" height="330" alt="image" src="https://github.com/user-attachments/assets/ae9323d8-4854-4bc9-adf3-d7037756c3cf" />
 
-2.Atribuie fiecăreia o prioritate (High/Medium/Low) și completează câmpul „Due Date”.
+<img width="1244" height="422" alt="image" src="https://github.com/user-attachments/assets/fc81099e-2f2d-4cd1-b284-343980857cc3" />
 
-<img width="155" height="329" alt="image" src="https://github.com/user-attachments/assets/9d0ca620-1707-4baf-9722-e7d76e930f04" />
+2.Restaurează baza de date din backup (import SQL sau prin plugin).
 
-3.Creează pagina „All Notes” și inserează următoarele shortcode-uri:
+<img width="1674" height="87" alt="image" src="https://github.com/user-attachments/assets/7ca5be0f-fb55-4411-ae6c-e7643e9b0ee2" />
 
-* [usm_notes] – pentru afișarea tuturor notițelor.
+<img width="870" height="350" alt="image" src="https://github.com/user-attachments/assets/543d8ad8-0d61-4b58-b954-20bc3e2a9140" />
 
-<img width="880" height="791" alt="image" src="https://github.com/user-attachments/assets/3cab1aa7-99f4-4a8b-9281-235d25a13836" />
+3.Verifică integritatea datelor (au fost restaurate imaginea și postarea șterse?).
 
-  
-* [usm_notes priority="high"] – pentru notițele cu prioritate mare.
+<img width="1000" height="373" alt="image" src="https://github.com/user-attachments/assets/0ffa8462-295a-4304-a621-eef4fc78dcc9" />
 
-<img width="848" height="558" alt="image" src="https://github.com/user-attachments/assets/eb96ee25-c7fb-4b19-83e4-082311add788" />
+Imaginea sa restaurat dar nu pana la capat
 
-* [usm_notes before_date="2026-03-30"] – pentru notițele cu dată de reamintire anterioară zilei de 30 martie 2026.
-
-<img width="816" height="810" alt="image" src="https://github.com/user-attachments/assets/d3603ec9-d10e-4f98-b63d-0fd780380bb6" />
+<img width="1714" height="235" alt="image" src="https://github.com/user-attachments/assets/b8a94eab-c2d5-4603-87f7-7897ee6b70b5" />
 
 ## Întrebări de control
 
-1.Care este diferența esențială dintre o taxonomie personalizată și un metacâmp? Oferă un exemplu când este mai potrivit să folosești taxonomie și când metadate.
+1.De ce DISALLOW_FILE_EDIT și permisiunile corecte pe wp-config.php reduc semnificativ riscul post-exploit?
 
-Taxonomia grupează postările (ex: toate notițele "Urgente"), în timp ce Metacâmpul stochează detalii unice (ex: o dată specifică). 
+Am învățat că acestea blochează un atacator care a spart deja parola de admin. DISALLOW_FILE_EDIT îi interzice să scrie cod periculos direct în teme din browser, 
 
-Folosești taxonomia pentru categorii și metadatele pentru proprietăți individuale care nu necesită pagini de arhivă.
+iar permisiunile pe wp-config.php îi ascund "cheile" bazei de date, limitând daunele după acces.
 
-2.De ce este necesar nonce la salvarea metacâmpurilor și ce se întâmplă dacă nu este verificat?
+2.Ce setări ai ales pentru Login Lockdown/Firewall și de ce (explică echilibrul între securitate și experiența utilizatorului)?
 
-Nonce-ul este un token de securitate care confirmă că salvarea datelor vine din formularul tău legitim. 
+Am pus 5 încercări în 15 minute cu blocare de 30 de minute.
 
-Fără el, site-ul este expus atacurilor de tip CSRF, permițând hackerilor să modifice baza de date prin acțiuni mascate executate în numele unui admin logat.
+E un echilibru bun: oprește roboții care bagă mii de parole, dar nu blochează imediat un coleg de laborator care a uitat parola sau a lăsat Caps Lock pornit.
 
-3.Care sunt cei mai importanți parametri ai register_post_type() și register_taxonomy() pentru frontend și UX (numește cel puțin trei și explică de ce)?
+3.Cu ce se deosebesc măsurile de protecție la nivel WordPress (plugin/WAF) față de cele la nivelul serverului web și al sistemului de operare?
 
-Pentru succesul unui plugin, public asigură vizibilitatea în site, has_archive creează automat o pagină cu lista tuturor postărilor, 
+Măsurile WordPress (plugin) filtrează utilizatorii și spam-ul, cele de Server (.htaccess) opresc atacul la "intrare" înainte să atingă site-ul, 
 
-iar hierarchical (pentru taxonomii) permite utilizatorului să aleagă priorități prin bife simple, îmbunătățind considerabil experiența de editare.
+iar cele de OS (permisiuni 755/644) sunt ultima barieră care protejează fișierele fizice de pe disc împotriva modificării. (in Windows acestea nu sunt permise)
+
+4.Ce trebuie inclus neapărat într-un backup „complet” WordPress și cum verifici dacă restaurarea funcționează cu adevărat?
+
+E obligatoriu să ai baza de date SQL (pentru texte/setări) și folderul wp-content (pentru poze/teme). 
+
+Ca să fiu sigur că restaurarea a mers, am verificat manual dacă pozele apar în galerie și dacă paginile se deschid fără erori 404.
